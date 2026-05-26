@@ -8,11 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    :root { --cream:#f5f0e8; --red:#d92b2b; --green:#2a4a2e; --yellow:#e8c832; --blue:#2e5a8a; --black:#1a1a1a; --gap:6px; }
+    :root{--cream:#f5f0e8;--red:#d92b2b;--green:#2a4a2e;--yellow:#e8c832;--blue:#2e5a8a;--black:#1a1a1a;--gap:6px;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     body{background:var(--cream);color:var(--black);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;}
-    .hero{width:100%;height:240px;overflow:hidden;background:#2a2a2a;display:flex;align-items:center;justify-content:center;}
-    .hero-placeholder{width:100%;height:100%;background:linear-gradient(160deg,#1a2a1e 0%,#2e3e22 40%,#3a2a10 100%);display:flex;align-items:center;justify-content:center;color:rgba(245,240,232,0.3);font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;}
+    .hero{width:100%;height:240px;overflow:hidden;position:relative;background:#1e3d22;}
+    .hero iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:177.78vh;min-width:100%;height:56.25vw;min-height:100%;pointer-events:none;}
+    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.15) 0%,transparent 100%);pointer-events:none;}
     .masthead{display:flex;align-items:baseline;justify-content:space-between;padding:18px 20px 10px;border-bottom:3px solid var(--black);}
     .masthead-title{font-family:'Josefin Sans',sans-serif;font-size:clamp(2rem,7vw,3.6rem);color:var(--red);letter-spacing:-0.01em;line-height:1;text-transform:uppercase;}
     .masthead-meta{font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:#666;text-align:right;line-height:1.8;}
@@ -25,7 +26,7 @@
     .card{border:3px solid var(--black);overflow:hidden;cursor:pointer;transition:transform 0.12s;background:var(--cream);}
     .card:hover{transform:translateY(-2px);}
     .card--wide{grid-column:span 2;}
-    .card-img{width:100%;height:180px;object-fit:cover;display:block;border-bottom:3px solid var(--black);background:#ccc;}
+    .card-img{width:100%;height:180px;object-fit:cover;display:block;border-bottom:3px solid var(--black);}
     .card-body{padding:14px 16px 18px;}
     .card-tag{font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:7px;display:inline-block;}
     .tag-green{color:var(--green);} .tag-blue{color:var(--blue);} .tag-red{color:var(--red);} .tag-yellow{color:#9a7e00;}
@@ -38,7 +39,7 @@
     .article-item{display:grid;grid-template-columns:180px 1fr;gap:22px;border-bottom:1px solid #bbb;padding-bottom:36px;cursor:pointer;}
     .article-item:hover .article-item-title{text-decoration:underline;}
     @media(max-width:600px){.article-item{grid-template-columns:1fr;}}
-    .article-thumb-placeholder{width:100%;aspect-ratio:4/3;border:2px solid var(--black);}
+    .article-thumb{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:2px solid var(--black);}
     .article-item-meta{font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:#888;margin-bottom:7px;}
     .article-item-title{font-family:'Instrument Serif',serif;font-size:1.25rem;line-height:1.3;margin-bottom:10px;}
     .article-item-desc{font-size:13px;color:#555;line-height:1.6;}
@@ -46,14 +47,15 @@
     @media(max-width:600px){.about-block{grid-template-columns:1fr;}}
     .about-block p{font-family:'Instrument Serif',serif;font-size:1.05rem;line-height:1.75;color:#333;margin-bottom:1.2em;}
     .about-block p:first-child::first-letter{font-size:3.2em;float:left;line-height:0.8;margin-right:8px;margin-top:4px;color:var(--red);}
-    .about-img-placeholder{width:100%;aspect-ratio:3/4;border:3px solid var(--black);background:var(--green);display:flex;align-items:flex-end;justify-content:flex-start;padding:14px;}
-    .about-img-caption{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,240,232,0.6);font-family:'Josefin Sans',sans-serif;}
     .about-pull{font-family:'Instrument Serif',serif;font-style:italic;font-size:1.5rem;line-height:1.4;border-left:4px solid var(--red);padding-left:20px;margin:30px 0;color:#222;}
+    .about-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;border:3px solid var(--black);}
     footer{border-top:3px solid var(--black);padding:16px 20px;display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#888;font-family:'Josefin Sans',sans-serif;}
   </style>
 </head>
 <body>
-  <div class="hero"><div class="hero-placeholder">[ video banner — swap in your tree footage ]</div></div>
+  <div class="hero">
+    <iframe src="https://www.youtube.com/embed/XxP8kxUn5bc?autoplay=1&mute=1&loop=1&playlist=XxP8kxUn5bc&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&start=10" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Forest background"></iframe>
+  </div>
   <div class="masthead">
     <div class="masthead-title">The Carmount<br>Field Notes</div>
     <div class="masthead-meta">Vol. I &nbsp;·&nbsp; No. 1<br>carmountfieldnotes.com<br>Est. 2024</div>
@@ -67,91 +69,61 @@
   </nav>
   <div class="page visible" id="page-home">
     <div class="grid">
-      <div class="card card--wide">
-        <img class="card-img" src="https://images.metmuseum.org/CRDImages/ep/original/DT1567.jpg" alt="Enclosure Acts" onerror="this.style.display='none'">
-        <div class="card-body"><span class="card-tag tag-green">Land &amp; Law</span><h2 class="card-title">The Enclosure Acts and the Grammar of Dispossession</h2><p>How parliamentary geometry remade the English commons, one hedgerow at a time.</p></div>
-      </div>
-      <div class="card">
-        <img class="card-img" src="https://images.metmuseum.org/CRDImages/is/original/DP251139.jpg" alt="Caccia Notturna" onerror="this.style.display='none'">
-        <div class="card-body"><span class="card-tag tag-red">Field Notes</span><h2 class="card-title">Caccia Notturna</h2><p>Night-hunting as a philosophy of attention.</p></div>
-      </div>
-      <div class="card">
-        <img class="card-img" src="https://images.metmuseum.org/CRDImages/ep/original/DP-14936-001.jpg" alt="Etagenhaeuser" onerror="this.style.display='none'">
-        <div class="card-body"><span class="card-tag tag-blue">Architecture</span><h2 class="card-title">Etagenhaeuser: The Ethics of the Stacked City</h2><p>On the tenement as civic form.</p></div>
-      </div>
-      <div class="card">
-        <img class="card-img" src="https://images.metmuseum.org/CRDImages/gr/original/DP132633.jpg" alt="Social Life of Insects" onerror="this.style.display='none'">
-        <div class="card-body"><span class="card-tag tag-yellow">Natural World</span><h2 class="card-title">The Social Life of Insects</h2><p>What eusocial colonies reveal about obligation and will.</p></div>
-      </div>
-      <div class="card">
-        <img class="card-img" src="https://images.metmuseum.org/CRDImages/ep/original/DP-14193-001.jpg" alt="What the Smile Does Not Say" onerror="this.style.display='none'">
-        <div class="card-body"><span class="card-tag tag-red">Portrait</span><h2 class="card-title">What the Smile Does Not Say</h2><p>Reading concealment in the painted face.</p></div>
-      </div>
-      <div class="card">
-        <img class="card-img" src="https://images.metmuseum.org/CRDImages/ep/original/DT1947.jpg" alt="Sunday Market" onerror="this.style.display='none'">
-        <div class="card-body"><span class="card-tag tag-blue">Everyday</span><h2 class="card-title">Sunday Market</h2><p>On the phenomenology of the weekly stall.</p></div>
-      </div>
+      <div class="card card--wide"><img class="card-img" src="https://images.metmuseum.org/CRDImages/ep/web-large/DP-42549-001.jpg" alt="Enclosure Acts"><div class="card-body"><span class="card-tag tag-green">Land &amp; Law</span><h2 class="card-title">The Enclosure Acts and the Grammar of Dispossession</h2><p>How parliamentary geometry remade the English commons, one hedgerow at a time.</p></div></div>
+      <div class="card"><img class="card-img" src="https://images.metmuseum.org/CRDImages/is/web-large/DP100755.jpg" alt="Caccia Notturna"><div class="card-body"><span class="card-tag tag-red">Field Notes</span><h2 class="card-title">Caccia Notturna</h2><p>Night-hunting as a philosophy of attention.</p></div></div>
+      <div class="card"><img class="card-img" src="https://images.metmuseum.org/CRDImages/ep/web-large/DP157664.jpg" alt="Etagenhaeuser"><div class="card-body"><span class="card-tag tag-blue">Architecture</span><h2 class="card-title">Etagenhaeuser: The Ethics of the Stacked City</h2><p>On the tenement as civic form.</p></div></div>
+      <div class="card"><img class="card-img" src="https://images.metmuseum.org/CRDImages/ao/web-large/DP-32949-001.jpg" alt="Social Life of Insects"><div class="card-body"><span class="card-tag tag-yellow">Natural World</span><h2 class="card-title">The Social Life of Insects</h2><p>What eusocial colonies reveal about obligation and will.</p></div></div>
+      <div class="card"><img class="card-img" src="https://images.metmuseum.org/CRDImages/ep/web-large/DP159891.jpg" alt="What the Smile Does Not Say"><div class="card-body"><span class="card-tag tag-red">Portrait</span><h2 class="card-title">What the Smile Does Not Say</h2><p>Reading concealment in the painted face.</p></div></div>
+      <div class="card"><img class="card-img" src="https://images.metmuseum.org/CRDImages/ep/web-large/DP375107.jpg" alt="Sunday Market"><div class="card-body"><span class="card-tag tag-blue">Everyday</span><h2 class="card-title">Sunday Market</h2><p>On the phenomenology of the weekly stall.</p></div></div>
     </div>
   </div>
   <div class="page" id="page-about">
-    <div class="section-page">
-      <h2>About</h2>
+    <div class="section-page"><h2>About</h2>
       <div class="about-block">
         <div>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
           <blockquote class="about-pull">"Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione sequi nesciunt."</blockquote>
-          <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit. Ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam nisi ut aliquid ex ea commodi consequatur.</p>
+          <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit. Ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
         </div>
-        <div><div class="about-img-placeholder"><span class="about-img-caption">Image — field, season unknown</span></div></div>
+        <div><img class="about-img" src="https://images.metmuseum.org/CRDImages/ep/web-large/DP157664.jpg" alt="Field" /></div>
       </div>
     </div>
   </div>
   <div class="page" id="page-fictional">
-    <div class="section-page">
-      <h2>Fictional</h2>
+    <div class="section-page"><h2>Fictional</h2>
       <div class="article-list">
-        <div class="article-item"><div class="article-thumb-placeholder" style="background:var(--blue);"></div><div><div class="article-item-meta">Short Story &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">The Cartographer's Last Survey</div><p class="article-item-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div></div>
-        <div class="article-item"><div class="article-thumb-placeholder" style="background:var(--green);"></div><div><div class="article-item-meta">Novella Excerpt &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Three Women at the Edge of the Forest</div><p class="article-item-desc">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p></div></div>
-        <div class="article-item"><div class="article-thumb-placeholder" style="background:#b5a060;"></div><div><div class="article-item-meta">Flash Fiction &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Inventory of a Room Cleared After Death</div><p class="article-item-desc">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed perspiciatis unde omnis iste natus error sit voluptatem.</p></div></div>
-        <div class="article-item"><div class="article-thumb-placeholder" style="background:var(--red);"></div><div><div class="article-item-meta">Poem &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Returning by the Wrong Road</div><p class="article-item-desc">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione sequi nesciunt.</p></div></div>
+        <div class="article-item"><img class="article-thumb" src="https://images.metmuseum.org/CRDImages/is/web-large/DP100755.jpg" alt="" /><div><div class="article-item-meta">Short Story &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">The Cartographer's Last Survey</div><p class="article-item-desc">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis nostrud exercitation ullamco laboris.</p></div></div>
+        <div class="article-item"><img class="article-thumb" src="https://images.metmuseum.org/CRDImages/ep/web-large/DP159891.jpg" alt="" /><div><div class="article-item-meta">Novella Excerpt &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Three Women at the Edge of the Forest</div><p class="article-item-desc">Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p></div></div>
+        <div class="article-item"><img class="article-thumb" src="https://images.metmuseum.org/CRDImages/ep/web-large/DP375107.jpg" alt="" /><div><div class="article-item-meta">Flash Fiction &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Inventory of a Room Cleared After Death</div><p class="article-item-desc">Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum. Sed perspiciatis unde omnis iste natus.</p></div></div>
+        <div class="article-item"><img class="article-thumb" src="https://images.metmuseum.org/CRDImages/ep/web-large/DP-42549-001.jpg" alt="" /><div><div class="article-item-meta">Poem &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Returning by the Wrong Road</div><p class="article-item-desc">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores eos qui ratione sequi nesciunt.</p></div></div>
       </div>
     </div>
   </div>
   <div class="page" id="page-political">
-    <div class="section-page">
-      <h2>Political</h2>
+    <div class="section-page"><h2>Political</h2>
       <div class="article-list">
-        <div class="article-item"><div class="article-thumb-placeholder" style="background:var(--black);"></div><div><div class="article-item-meta">Essay &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">The Grammar of Dispossession, Revisited</div><p class="article-item-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p></div></div>
-        <div class="article-item"><div class="article-thumb-placeholder" style="background:#5a3a1a;"></div><div><div class="article-item-meta">Analysis &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Common Land, Common People: Notes on the Enclosures</div><p class="article-item-desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p></div></div>
-        <div class="article-item"><div class="article-thumb-placeholder" style="background:var(--blue);"></div><div><div class="article-item-meta">Interview &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">On Staying: A Conversation About Rural Refusal</div><p class="article-item-desc">Sed perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam eaque ipsa quae ab illo inventore veritatis.</p></div></div>
+        <div class="article-item"><img class="article-thumb" src="https://images.metmuseum.org/CRDImages/ep/web-large/DP-42549-001.jpg" alt="" /><div><div class="article-item-meta">Essay &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">The Grammar of Dispossession, Revisited</div><p class="article-item-desc">Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p></div></div>
+        <div class="article-item"><img class="article-thumb" src="https://images.metmuseum.org/CRDImages/ep/web-large/DP157664.jpg" alt="" /><div><div class="article-item-meta">Analysis &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Common Land, Common People: Notes on the Enclosures</div><p class="article-item-desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p></div></div>
+        <div class="article-item"><img class="article-thumb" src="https://images.metmuseum.org/CRDImages/ao/web-large/DP-32949-001.jpg" alt="" /><div><div class="article-item-meta">Interview &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">On Staying: A Conversation About Rural Refusal</div><p class="article-item-desc">Sed perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam eaque ipsa quae ab illo inventore veritatis.</p></div></div>
       </div>
     </div>
   </div>
   <div class="page" id="page-everyday">
-    <div class="section-page">
-      <h2>Everyday</h2>
+    <div class="section-page"><h2>Everyday</h2>
       <div class="article-list">
-        <div class="article-item"><div class="article-thumb-placeholder" style="background:#c8a87a;"></div><div><div class="article-item-meta">Dispatch &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Sunday Market</div><p class="article-item-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The weekly stall and the anthropology of the habitual purchase.</p></div></div>
-        <div class="article-item"><div class="article-thumb-placeholder" style="background:var(--green);"></div><div><div class="article-item-meta">Notes &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">How to Watch a Field for an Hour</div><p class="article-item-desc">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. On sustained looking as a practice, not a talent.</p></div></div>
-        <div class="article-item"><div class="article-thumb-placeholder" style="background:#8a7a5a;"></div><div><div class="article-item-meta">Seasonal &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Mud Season: A Defense</div><p class="article-item-desc">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. An argument for the unloved interregnum between winter and spring.</p></div></div>
-        <div class="article-item"><div class="article-thumb-placeholder" style="background:#4a6a8a;"></div><div><div class="article-item-meta">Recipe &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Broth</div><p class="article-item-desc">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. The long boil as a form of attention.</p></div></div>
+        <div class="article-item"><img class="article-thumb" src="https://images.metmuseum.org/CRDImages/ep/web-large/DP375107.jpg" alt="" /><div><div class="article-item-meta">Dispatch &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Sunday Market</div><p class="article-item-desc">Lorem ipsum dolor sit amet consectetur adipiscing elit. The weekly stall and the anthropology of the habitual purchase. Sed do eiusmod tempor incididunt.</p></div></div>
+        <div class="article-item"><img class="article-thumb" src="https://images.metmuseum.org/CRDImages/ep/web-large/DP157664.jpg" alt="" /><div><div class="article-item-meta">Notes &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">How to Watch a Field for an Hour</div><p class="article-item-desc">Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. On sustained looking as a practice not a talent.</p></div></div>
+        <div class="article-item"><img class="article-thumb" src="https://images.metmuseum.org/CRDImages/ao/web-large/DP-32949-001.jpg" alt="" /><div><div class="article-item-meta">Seasonal &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Mud Season: A Defense</div><p class="article-item-desc">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. An argument for the unloved interregnum between winter and spring.</p></div></div>
+        <div class="article-item"><img class="article-thumb" src="https://images.metmuseum.org/CRDImages/is/web-large/DP100755.jpg" alt="" /><div><div class="article-item-meta">Recipe &nbsp;·&nbsp; Issue 1</div><div class="article-item-title">Broth</div><p class="article-item-desc">Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum. The long boil as a form of attention.</p></div></div>
       </div>
     </div>
   </div>
   <footer><span>The Carmount Field Notes</span><span>carmountfieldnotes.com</span></footer>
   <script>
-    const navLinks = document.querySelectorAll('nav a');
-    const pages = document.querySelectorAll('.page');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        const target = link.dataset.page;
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        pages.forEach(p => { p.classList.toggle('visible', p.id === 'page-' + target); });
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
+    const navLinks=document.querySelectorAll('nav a');
+    const pages=document.querySelectorAll('.page');
+    navLinks.forEach(link=>{link.addEventListener('click',()=>{const target=link.dataset.page;navLinks.forEach(l=>l.classList.remove('active'));link.classList.add('active');pages.forEach(p=>{p.classList.toggle('visible',p.id==='page-'+target);});window.scrollTo({top:0,behavior:'smooth'});});});
   </script>
 </body>
 </html>
